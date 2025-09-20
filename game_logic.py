@@ -29,13 +29,17 @@ def play_game():
     mistakes = 0
 
     print("Welcome to Snowman Meltdown!")
-    # For now, display the initial game state.
-    display_game_state(mistakes, secret_word, guessed_letters)
 
     # Prompt the user until they win or exceed mistake limit
     while mistakes < 3:
-        print(secret_word)
-        guess = input("Guess a letter: ").lower()
+        # Display the game state.
+        display_game_state(mistakes, secret_word, guessed_letters)
+        while True:
+            guess = input("Guess a letter: ").lower().strip()
+            if len(guess) == 1 and guess.isalpha():
+                break
+            else:
+                print("Invalid input! Only single letter is allowed.")
         print("You guessed:", guess)
 
         if guess in secret_word:
