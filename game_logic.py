@@ -1,3 +1,4 @@
+"""Provide game logic for the snowman guessing game."""
 import random
 import ascii_art
 
@@ -10,6 +11,7 @@ def get_random_word():
 
 
 def display_game_state(mistakes, secret_word, guessed_letters):
+    """Display the game state as ASCII art."""
     # Display the snowman stage for the current number of mistakes.
     print(ascii_art.STAGES[mistakes])
     # Build a display version of the secret word.
@@ -24,6 +26,7 @@ def display_game_state(mistakes, secret_word, guessed_letters):
 
 
 def play_game():
+    """Run the game logic."""
     secret_word = get_random_word()
     guessed_letters = []
     mistakes = 0
@@ -38,8 +41,7 @@ def play_game():
             guess = input("Guess a letter: ").lower().strip()
             if len(guess) == 1 and guess.isalpha():
                 break
-            else:
-                print("Invalid input! Only single letter is allowed.")
+            print("Invalid input! Only single letter is allowed.")
         print("You guessed:", guess)
 
         if guess in secret_word:
@@ -47,9 +49,8 @@ def play_game():
         else:
             mistakes += 1
 
-        if sorted(list(set(guessed_letters))) == sorted([char for char in secret_word]):
+        if sorted(list(set(guessed_letters))) == sorted(list(secret_word)):
             print("Congratulations, you saved the snowman!")
             break
-        elif mistakes == 3:
+        if mistakes == 3:
             print(f"Game Over! The word was: {secret_word}")
-

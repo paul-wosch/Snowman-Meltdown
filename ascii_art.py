@@ -1,3 +1,4 @@
+"""Provide ASCII art for the snowman guessing game."""
 # Snowman ASCII Art stages
 STAGES = [
      # Stage 0: Full snowman
